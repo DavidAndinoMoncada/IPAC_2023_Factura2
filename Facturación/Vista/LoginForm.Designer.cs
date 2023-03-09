@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.UsuariotextBox = new System.Windows.Forms.TextBox();
@@ -72,9 +72,9 @@
             // 
             this.ContraseñatextBox.Location = new System.Drawing.Point(140, 82);
             this.ContraseñatextBox.Name = "ContraseñatextBox";
+            this.ContraseñatextBox.PasswordChar = '*';
             this.ContraseñatextBox.Size = new System.Drawing.Size(299, 27);
             this.ContraseñatextBox.TabIndex = 3;
-            this.ContraseñatextBox.UseSystemPasswordChar = true;
             // 
             // Aceptarbutton
             // 
@@ -103,6 +103,7 @@
             this.Cancelarbutton.Text = "Cancelar";
             this.Cancelarbutton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Cancelarbutton.UseVisualStyleBackColor = true;
+            this.Cancelarbutton.Click += new System.EventHandler(this.Cancelarbutton_Click);
             // 
             // pictureBox1
             // 
@@ -128,8 +129,9 @@
             this.MostrarContraseñabutton.Size = new System.Drawing.Size(28, 27);
             this.MostrarContraseñabutton.TabIndex = 7;
             this.MostrarContraseñabutton.UseVisualStyleBackColor = true;
+            this.MostrarContraseñabutton.Click += new System.EventHandler(this.MostrarContraseñabutton_Click);
             // 
-            // Login
+            // LoginForm
             // 
             this.AcceptButton = this.Aceptarbutton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -148,7 +150,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
