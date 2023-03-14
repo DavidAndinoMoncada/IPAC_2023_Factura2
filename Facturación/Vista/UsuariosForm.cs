@@ -1,7 +1,9 @@
 ﻿using Datos;
 using Entidades;
+using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Vista
@@ -146,6 +148,35 @@ namespace Vista
             }
             else if (TipoOperacion == "Modificar")
             {
+                user.CodigoUsuario = CodigotextBox.Text;
+                user.Nombre = NombretextBox.Text;
+                user.Contraseña = ContraseñatextBox.Text;
+                user.Correo = CorreotextBox.Text;
+                user.Rol = RolcomboBox.Text;
+                user.EstaActivo = EstaActivocheckBox.Checked;
+
+                if (FotopictureBox.Image != null)
+                {
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                    FotopictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    user.Foto = ms.GetBuffer();
+                }
+
+                bool modifico = UsuarioDB.Editar(user);
+
+                if (modifico)
+                {
+                    LimpiarControles();
+                    DesabilitarControles();
+                    TraerUsuarios();
+                    MessageBox.Show("Registro Actualizado Correctamente");
+
+                }
+                else
+                {
+                    MessageBox.Show("No se Pudo Actualizar el Registro");
+                }
 
             }
         }
@@ -153,6 +184,30 @@ namespace Vista
         private void Modificarbutton_Click(object sender, System.EventArgs e)
         {
             TipoOperacion = "Modificar";
+
+            if (UsuariosdataGridView.SelectedRows.Count > 0)
+            {
+                CodigotextBox.Text = UsuariosdataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString();
+                NombretextBox.Text = UsuariosdataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
+                ContraseñatextBox.Text = UsuariosdataGridView.CurrentRow.Cells["Contraseña"].Value.ToString();
+                CorreotextBox.Text = UsuariosdataGridView.CurrentRow.Cells["Correo"].Value.ToString();
+                RolcomboBox.Text = UsuariosdataGridView.CurrentRow.Cells["Rol"].Value.ToString();
+                EstaActivocheckBox.Checked = Convert.ToBoolean(UsuariosdataGridView.CurrentRow.Cells["EstaActivo"].Value);
+
+                byte[] miFoto = UsuarioDB.DevolverFoto(UsuariosdataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString()); ;
+
+                if (miFoto.Length > 0)
+                {
+                    MemoryStream ms = new MemoryStream(miFoto);
+                    FotopictureBox.Image = System.Drawing.Bitmap.FromStream(ms);
+                }
+
+                HabilitarControles();
+            }
+            else
+            {
+                MessageBox.Show("Debe Seleccionar un Registro");
+            }
         }
 
         private void AdjuntarFotobutton_Click(object sender, System.EventArgs e)
@@ -177,6 +232,36 @@ namespace Vista
 
             UsuariosdataGridView.DataSource = dt;
 
+        }
+
+        private void Eliminarbutton_Click(object sender, EventArgs e)
+        {
+            if (UsuariosdataGridView.SelectedRows.Count > 0)
+            {
+
+                DialogResult resultado = MessageBox.Show("Esta Seguiro de Eliminar el Registro", "Advertencia", MessageBoxButtons.YesNo);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    bool elimino = UsuarioDB.Eliminar(UsuariosdataGridView.CurrentRow.Cells["CodigoUsuario"].Value.ToString());
+
+                    if (elimino)
+                    {
+                        LimpiarControles();
+                        DesabilitarControles();
+                        TraerUsuarios();
+                        MessageBox.Show("Registro Eliminado Correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Se Pudo Eliminar El Registro");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe Seleccionar un Registro");
+            }
         }
 
     }

@@ -74,7 +74,7 @@ namespace Datos
                 StringBuilder sql = new StringBuilder();
 
                 sql.Append("INSERT INTO usuario VALUES ");
-                sql.Append("(@CodigoUsuario, @Nombre, @Contraseña, @Correo, @Rol, @Foto, @FechaCreacion, @EstaActivo)");
+                sql.Append("(@CodigoUsuario, @Nombre, @Contraseña, @Correo, @Rol, @Foto, @FechaCreacion, @EstaActivo);");
 
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
@@ -111,7 +111,6 @@ namespace Datos
         public bool Editar(Usuario user)
         {
 
-
             bool edito = false;
 
             try
@@ -119,8 +118,8 @@ namespace Datos
                 StringBuilder sql = new StringBuilder();
 
                 sql.Append("UPDATE usuario SET ");
-                sql.Append("Nombre = @Nombre, Contraseña = @Contraseña, Correo = @Correo, Rol = @Rol, @Foto, EstaActivo = @EstaActivo");
-                sql.Append("WHERE CodigoUsuario = @CodigoUsuario;");
+                sql.Append(" Nombre = @Nombre, Contraseña = @Contraseña, Correo = @Correo, Rol = @Rol, Foto = @Foto, EstaActivo = @EstaActivo ");
+                sql.Append("WHERE CodigoUsuario = @CodigoUsuario; ");
 
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
@@ -128,6 +127,7 @@ namespace Datos
 
                     using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
                     {
+
                         _comando.CommandType = CommandType.Text;
                         _comando.Parameters.Add("@CodigoUsuario", MySqlDbType.VarChar, 50).Value = user.CodigoUsuario;
                         _comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = user.Nombre;
@@ -135,7 +135,6 @@ namespace Datos
                         _comando.Parameters.Add("@Correo", MySqlDbType.VarChar, 45).Value = user.Correo;
                         _comando.Parameters.Add("@Rol", MySqlDbType.VarChar, 20).Value = user.Rol;
                         _comando.Parameters.Add("@Foto", MySqlDbType.LongBlob).Value = user.Foto;
-                        _comando.Parameters.Add("@FechaCreacion", MySqlDbType.DateTime).Value = user.FechaCreación;
                         _comando.Parameters.Add("@EstaActivo", MySqlDbType.Bit).Value = user.EstaActivo;
                         _comando.ExecuteNonQuery();
                         edito = true;
@@ -143,7 +142,6 @@ namespace Datos
                     }
 
                 }
-
 
             }
             catch (System.Exception)
@@ -222,6 +220,45 @@ namespace Datos
             }
 
             return dt;
+
+        }
+
+        public byte[] DevolverFoto(string CodigoUsuario)
+        {
+            byte[] foto = new byte[0];
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("SELECT Foto FROM usuario WHERE CodigoUsuario = @CodigoUsuario;");
+
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+
+                    using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+                        _comando.CommandType = CommandType.Text;
+                        _comando.Parameters.Add("@CodigoUsuario", MySqlDbType.VarChar, 50).Value = CodigoUsuario;
+                        MySqlDataReader dr = _comando.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            foto = (byte[])dr["Foto"];
+                        }
+
+                    }
+
+                }
+
+
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return foto;
 
         }
 
