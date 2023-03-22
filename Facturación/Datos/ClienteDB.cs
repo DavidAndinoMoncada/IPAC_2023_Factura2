@@ -124,5 +124,127 @@ namespace Datos
             return dt;
 
         }
+
+        public bool Insertar(Cliente cliente)
+        {
+            bool inserto = false;
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("INSERT INTO cliente VALUES ");
+                sql.Append("(@Identidad, @Nombre, @Telefono, @Correo, @Direccion, @FechaNacimiento, @EstaActivo);");
+
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+
+                    using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+                        _comando.CommandType = CommandType.Text;
+                        _comando.Parameters.Add("@Identidad", MySqlDbType.VarChar, 25).Value = cliente.Identidad;
+                        _comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = cliente.Nombre;
+                        _comando.Parameters.Add("@Telefono", MySqlDbType.VarChar, 15).Value = cliente.Telefono;
+                        _comando.Parameters.Add("@Correo", MySqlDbType.VarChar, 45).Value = cliente.Correo;
+                        _comando.Parameters.Add("@Direccion", MySqlDbType.VarChar, 10).Value = cliente.Direccion;
+                        _comando.Parameters.Add("@FechaNacimiento", MySqlDbType.DateTime).Value = cliente.FechaNacimiento;
+                        _comando.Parameters.Add("@EstaActivo", MySqlDbType.Bit).Value = cliente.EstaActivo;
+                        _comando.ExecuteNonQuery();
+                        inserto = true;
+
+                    }
+
+                }
+
+
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return inserto;
+
+        }
+
+        public bool Editar(Cliente cliente)
+        {
+
+            bool edito = false;
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("UPDATE cliente SET ");
+                sql.Append(" Nombre = @Nombre, Telefono = @Telefono, Correo = @Correo, Direccion = @Direccion, EstaActivo = @EstaActivo ");
+                sql.Append("WHERE Identidad = @Identidad; ");
+
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+
+                    using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+
+                        _comando.CommandType = CommandType.Text;
+                        _comando.Parameters.Add("@Identidad", MySqlDbType.VarChar, 25).Value = cliente.Identidad;
+                        _comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = cliente.Nombre;
+                        _comando.Parameters.Add("@Telefono", MySqlDbType.VarChar, 15).Value = cliente.Telefono;
+                        _comando.Parameters.Add("@Correo", MySqlDbType.VarChar, 45).Value = cliente.Correo;
+                        _comando.Parameters.Add("@Direccion", MySqlDbType.VarChar, 10).Value = cliente.Direccion;
+                        _comando.Parameters.Add("@EstaActivo", MySqlDbType.Bit).Value = cliente.EstaActivo;
+                        _comando.ExecuteNonQuery();
+                        edito = true;
+
+                    }
+
+                }
+
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return edito;
+
+        }
+
+        public bool Eliminar(string identidad)
+        {
+
+            bool elimino = false;
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("DELETE FROM cliente ");
+                sql.Append("WHERE Identidad = @Identidad;");
+
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+
+                    using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+                        _comando.CommandType = CommandType.Text;
+                        _comando.Parameters.Add("@Identidad", MySqlDbType.VarChar, 25).Value = identidad;
+                        _comando.ExecuteNonQuery();
+                        elimino = true;
+
+                    }
+
+                }
+
+
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return elimino;
+
+        }
     }
 }

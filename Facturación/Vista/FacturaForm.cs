@@ -1,6 +1,5 @@
 ﻿using Datos;
 using Entidades;
-using System;
 using System.Windows.Forms;
 
 namespace Vista
@@ -29,7 +28,7 @@ namespace Vista
             }
         }
 
-        private void BuscarClientebutton_Click(object sender, EventArgs e)
+        private void BuscarClientebutton_Click(object sender, System.EventArgs e)
         {
 
         }

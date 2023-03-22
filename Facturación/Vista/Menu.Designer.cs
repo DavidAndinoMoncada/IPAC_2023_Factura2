@@ -38,10 +38,10 @@
             this.ProductotoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripTabItem3 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.toolStripEx3 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTabItem4 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.ClientestoolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.VentastoolStripTabItem = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.toolStripEx4 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.FacturatoolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
@@ -50,7 +50,7 @@
             this.toolStripEx2.SuspendLayout();
             this.toolStripTabItem3.Panel.SuspendLayout();
             this.toolStripEx3.SuspendLayout();
-            this.toolStripTabItem4.Panel.SuspendLayout();
+            this.VentastoolStripTabItem.Panel.SuspendLayout();
             this.toolStripEx4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem1);
             this.ribbonControlAdv1.Header.AddMainItem(ProductostoolStripTabItem);
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem3);
-            this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem4);
+            this.ribbonControlAdv1.Header.AddMainItem(VentastoolStripTabItem);
             this.ribbonControlAdv1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControlAdv1.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribbonControlAdv1.MenuButtonText = "";
@@ -80,7 +80,7 @@
             this.ribbonControlAdv1.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem3;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem1;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = true;
             this.ribbonControlAdv1.Size = new System.Drawing.Size(978, 190);
             this.ribbonControlAdv1.SystemText.QuickAccessDialogDropDownName = "Start menu";
@@ -206,7 +206,7 @@
             this.toolStripEx3.Image = null;
             this.toolStripEx3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2});
+            this.ClientestoolStripButton});
             this.toolStripEx3.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx3.Name = "toolStripEx3";
             this.toolStripEx3.Office12Mode = false;
@@ -215,32 +215,33 @@
             this.toolStripEx3.Size = new System.Drawing.Size(76, 105);
             this.toolStripEx3.TabIndex = 0;
             // 
-            // toolStripButton2
+            // ClientestoolStripButton
             // 
-            this.toolStripButton2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(67, 83);
-            this.toolStripButton2.Text = "Clientes";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ClientestoolStripButton.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientestoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ClientestoolStripButton.Image")));
+            this.ClientestoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ClientestoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ClientestoolStripButton.Name = "ClientestoolStripButton";
+            this.ClientestoolStripButton.Size = new System.Drawing.Size(67, 83);
+            this.ClientestoolStripButton.Text = "Clientes";
+            this.ClientestoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ClientestoolStripButton.Click += new System.EventHandler(this.ClientestoolStripButton_Click);
             // 
-            // toolStripTabItem4
+            // VentastoolStripTabItem
             // 
-            this.toolStripTabItem4.Name = "toolStripTabItem4";
+            this.VentastoolStripTabItem.Name = "VentastoolStripTabItem";
             // 
             // ribbonControlAdv1.ribbonPanel4
             // 
-            this.toolStripTabItem4.Panel.Controls.Add(this.toolStripEx4);
-            this.toolStripTabItem4.Panel.Name = "ribbonPanel4";
-            this.toolStripTabItem4.Panel.ScrollPosition = 0;
-            this.toolStripTabItem4.Panel.TabIndex = 5;
-            this.toolStripTabItem4.Panel.Text = "Ventas";
-            this.toolStripTabItem4.Position = 3;
-            this.toolStripTabItem4.Size = new System.Drawing.Size(70, 41);
-            this.toolStripTabItem4.Tag = "4";
-            this.toolStripTabItem4.Text = "Ventas";
+            this.VentastoolStripTabItem.Panel.Controls.Add(this.toolStripEx4);
+            this.VentastoolStripTabItem.Panel.Name = "ribbonPanel4";
+            this.VentastoolStripTabItem.Panel.ScrollPosition = 0;
+            this.VentastoolStripTabItem.Panel.TabIndex = 5;
+            this.VentastoolStripTabItem.Panel.Text = "Ventas";
+            this.VentastoolStripTabItem.Position = 3;
+            this.VentastoolStripTabItem.Size = new System.Drawing.Size(70, 41);
+            this.VentastoolStripTabItem.Tag = "4";
+            this.VentastoolStripTabItem.Text = "Ventas";
             // 
             // toolStripEx4
             // 
@@ -251,7 +252,7 @@
             this.toolStripEx4.Image = null;
             this.toolStripEx4.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton3});
+            this.FacturatoolStripButton});
             this.toolStripEx4.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx4.Name = "toolStripEx4";
             this.toolStripEx4.Office12Mode = false;
@@ -260,16 +261,17 @@
             this.toolStripEx4.Size = new System.Drawing.Size(116, 105);
             this.toolStripEx4.TabIndex = 0;
             // 
-            // toolStripButton3
+            // FacturatoolStripButton
             // 
-            this.toolStripButton3.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(107, 83);
-            this.toolStripButton3.Text = "Nueva Factura";
-            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.FacturatoolStripButton.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FacturatoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FacturatoolStripButton.Image")));
+            this.FacturatoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FacturatoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FacturatoolStripButton.Name = "FacturatoolStripButton";
+            this.FacturatoolStripButton.Size = new System.Drawing.Size(107, 83);
+            this.FacturatoolStripButton.Text = "Nueva Factura";
+            this.FacturatoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.FacturatoolStripButton.Click += new System.EventHandler(this.FacturatoolStripButton_Click);
             // 
             // Menu
             // 
@@ -279,7 +281,6 @@
             this.Controls.Add(this.ribbonControlAdv1);
             this.IsMdiContainer = true;
             this.Name = "Menu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).EndInit();
             this.ribbonControlAdv1.ResumeLayout(false);
@@ -296,8 +297,8 @@
             this.toolStripTabItem3.Panel.PerformLayout();
             this.toolStripEx3.ResumeLayout(false);
             this.toolStripEx3.PerformLayout();
-            this.toolStripTabItem4.Panel.ResumeLayout(false);
-            this.toolStripTabItem4.Panel.PerformLayout();
+            this.VentastoolStripTabItem.Panel.ResumeLayout(false);
+            this.VentastoolStripTabItem.Panel.PerformLayout();
             this.toolStripEx4.ResumeLayout(false);
             this.toolStripEx4.PerformLayout();
             this.ResumeLayout(false);
@@ -307,7 +308,7 @@
         #endregion
 
         private Syncfusion.Windows.Forms.Tools.RibbonControlAdv ribbonControlAdv1;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem4;
+        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem VentastoolStripTabItem;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem1;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ProductostoolStripTabItem;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem3;
@@ -316,8 +317,8 @@
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx2;
         private System.Windows.Forms.ToolStripButton ProductotoolStripButton;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx3;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton ClientestoolStripButton;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx4;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton FacturatoolStripButton;
     }
 }
