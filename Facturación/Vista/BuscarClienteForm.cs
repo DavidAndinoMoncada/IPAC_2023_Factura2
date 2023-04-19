@@ -12,26 +12,27 @@ namespace Vista
             InitializeComponent();
         }
 
-        ClienteDB ClienteDB = new ClienteDB();
+        ClienteDB clienteDB = new ClienteDB();
 
-        public Cliente Cliente = new Cliente();
+        public Cliente cliente = new Cliente();
 
         private void BuscarClienteForm_Load(object sender, EventArgs e)
         {
-            ClientesdataGridView.DataSource = ClienteDB.DevolverClientes();
+            ClientesdataGridView.DataSource = clienteDB.DevolverClientes();
         }
 
         private void Aceptarbutton_Click(object sender, EventArgs e)
         {
             if (ClientesdataGridView.SelectedRows.Count > 0)
             {
-                Cliente.Identidad = ClientesdataGridView.CurrentRow.Cells["Identidad"].Value.ToString();
-                Cliente.Nombre = ClientesdataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
-                Cliente.Telefono = ClientesdataGridView.CurrentRow.Cells["Telefono"].Value.ToString();
-                Cliente.Correo = ClientesdataGridView.CurrentRow.Cells["Correo"].Value.ToString();
-                Cliente.Direccion = ClientesdataGridView.CurrentRow.Cells["Direccion"].Value.ToString();
-                Cliente.FechaNacimiento = Convert.ToDateTime(ClientesdataGridView.CurrentRow.Cells["FechaNacimiento"].Value);
-                Cliente.EstaActivo = Convert.ToBoolean(ClientesdataGridView.CurrentRow.Cells["EstaActivo"].Value);
+                cliente.Identidad = ClientesdataGridView.CurrentRow.Cells["Identidad"].Value.ToString();
+                cliente.Nombre = ClientesdataGridView.CurrentRow.Cells["Nombre"].Value.ToString();
+                cliente.Telefono = ClientesdataGridView.CurrentRow.Cells["Telefono"].Value.ToString();
+                cliente.Correo = ClientesdataGridView.CurrentRow.Cells["Correo"].Value.ToString();
+                cliente.Direccion = ClientesdataGridView.CurrentRow.Cells["Direccion"].Value.ToString();
+                cliente.FechaNacimiento = Convert.ToDateTime(ClientesdataGridView.CurrentRow.Cells["FechaNacimiento"].Value);
+                cliente.EstaActivo = Convert.ToBoolean(ClientesdataGridView.CurrentRow.Cells["EstaActivo"].Value);
+                Close();
 
             }
         }
@@ -39,8 +40,13 @@ namespace Vista
         private void NombretextBox_KeyUp(object sender, KeyEventArgs e)
         {
 
-            ClientesdataGridView.DataSource = ClienteDB.DevolverClientesPorNombre(NombretextBox.Text);
+            ClientesdataGridView.DataSource = clienteDB.DevolverClientesPorNombre(NombretextBox.Text);
 
+        }
+
+        private void Cancelarbutton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

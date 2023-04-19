@@ -65,6 +65,12 @@
     <Compile Include="BuscarClienteForm.Designer.cs">
       <DependentUpon>BuscarClienteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuscarProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarProductoForm.Designer.cs">
+      <DependentUpon>BuscarProductoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </Compile>
     <EmbeddedResource Include="BuscarClienteForm.resx">
       <DependentUpon>BuscarClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarProductoForm.resx">
+      <DependentUpon>BuscarProductoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClienteForm.resx">
       <DependentUpon>ClienteForm.cs</DependentUpon>

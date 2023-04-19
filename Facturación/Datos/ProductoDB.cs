@@ -249,5 +249,39 @@ namespace Datos
 
         }
 
+        public DataTable DevolverProductoPorDescripcion(string Descripcion)
+        {
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+
+                sql.Append("SELECT * FROM producto WHERE Descripcion LIKE '%" + Descripcion + "%'");
+
+                using (MySqlConnection _conexion = new MySqlConnection(cadena))
+                {
+                    _conexion.Open();
+
+                    using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
+                    {
+                        _comando.CommandType = CommandType.Text;
+                        MySqlDataReader dr = _comando.ExecuteReader();
+                        dt.Load(dr);
+
+                    }
+
+                }
+
+            }
+            catch (System.Exception)
+            {
+            }
+
+            return dt;
+
+        }
+
     }
 }

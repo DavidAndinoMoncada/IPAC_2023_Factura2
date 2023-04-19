@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturaForm));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -53,12 +54,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.ISVtextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.TotaltextBox = new System.Windows.Forms.TextBox();
+            this.DescuentotextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PagoTotaltextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.Guardarbutton = new System.Windows.Forms.Button();
             this.Cancelarbutton = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -192,6 +195,7 @@
             this.CantidadtextBox.Name = "CantidadtextBox";
             this.CantidadtextBox.Size = new System.Drawing.Size(237, 27);
             this.CantidadtextBox.TabIndex = 8;
+            this.CantidadtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadtextBox_KeyPress);
             // 
             // label7
             // 
@@ -226,6 +230,7 @@
             this.BuscarProductobutton.TabIndex = 4;
             this.BuscarProductobutton.Text = "...";
             this.BuscarProductobutton.UseVisualStyleBackColor = true;
+            this.BuscarProductobutton.Click += new System.EventHandler(this.BuscarProductobutton_Click);
             // 
             // DescripcionProductotextBox
             // 
@@ -241,6 +246,7 @@
             this.CodigotextBox.Name = "CodigotextBox";
             this.CodigotextBox.Size = new System.Drawing.Size(237, 27);
             this.CodigotextBox.TabIndex = 1;
+            this.CodigotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CodigotextBox_KeyPress);
             // 
             // label4
             // 
@@ -253,6 +259,7 @@
             // 
             // DetalledataGridView
             // 
+            this.DetalledataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DetalledataGridView.Location = new System.Drawing.Point(1, 401);
             this.DetalledataGridView.Name = "DetalledataGridView";
@@ -295,12 +302,13 @@
             this.label9.TabIndex = 11;
             this.label9.Text = "ISV:";
             // 
-            // TotaltextBox
+            // DescuentotextBox
             // 
-            this.TotaltextBox.Location = new System.Drawing.Point(846, 749);
-            this.TotaltextBox.Name = "TotaltextBox";
-            this.TotaltextBox.Size = new System.Drawing.Size(237, 27);
-            this.TotaltextBox.TabIndex = 14;
+            this.DescuentotextBox.Location = new System.Drawing.Point(846, 749);
+            this.DescuentotextBox.Name = "DescuentotextBox";
+            this.DescuentotextBox.Size = new System.Drawing.Size(237, 27);
+            this.DescuentotextBox.TabIndex = 14;
+            this.DescuentotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescuentotextBox_KeyPress);
             // 
             // label10
             // 
@@ -311,13 +319,13 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "Descuento:";
             // 
-            // textBox1
+            // PagoTotaltextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(846, 791);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(237, 27);
-            this.textBox1.TabIndex = 16;
+            this.PagoTotaltextBox.Location = new System.Drawing.Point(846, 791);
+            this.PagoTotaltextBox.Name = "PagoTotaltextBox";
+            this.PagoTotaltextBox.ReadOnly = true;
+            this.PagoTotaltextBox.Size = new System.Drawing.Size(237, 27);
+            this.PagoTotaltextBox.TabIndex = 16;
             // 
             // label11
             // 
@@ -336,6 +344,7 @@
             this.Guardarbutton.TabIndex = 17;
             this.Guardarbutton.Text = "Guardar";
             this.Guardarbutton.UseVisualStyleBackColor = true;
+            this.Guardarbutton.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // Cancelarbutton
             // 
@@ -345,6 +354,21 @@
             this.Cancelarbutton.TabIndex = 18;
             this.Cancelarbutton.Text = "Cancelar";
             this.Cancelarbutton.UseVisualStyleBackColor = true;
+            this.Cancelarbutton.Click += new System.EventHandler(this.Cancelarbutton_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // FacturaForm
             // 
@@ -354,9 +378,9 @@
             this.ClientSize = new System.Drawing.Size(1113, 833);
             this.Controls.Add(this.Cancelarbutton);
             this.Controls.Add(this.Guardarbutton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.PagoTotaltextBox);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.TotaltextBox);
+            this.Controls.Add(this.DescuentotextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.ISVtextBox);
             this.Controls.Add(this.label9);
@@ -371,6 +395,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FacturaForm";
             this.Text = "FacturaForm";
+            this.Load += new System.EventHandler(this.FacturaForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -410,11 +435,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox ISVtextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox TotaltextBox;
+        private System.Windows.Forms.TextBox DescuentotextBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox PagoTotaltextBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button Guardarbutton;
         private System.Windows.Forms.Button Cancelarbutton;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

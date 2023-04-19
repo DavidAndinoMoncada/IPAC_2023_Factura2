@@ -10,6 +10,7 @@ namespace Datos
     {
         string cadena = "server=localhost; user=root; database=factura2; password=123456";
 
+
         public bool Guardar(Factura factura, List<DetalleFactura> detalles)
         {
             bool inserto = false;
@@ -19,18 +20,18 @@ namespace Datos
             {
                 StringBuilder sqlFactura = new StringBuilder();
 
-                sqlFactura.Append("INSERT INTO factura VALUES (@Fecha, @IdentidadCliente, @CodigoUsuario, @ISV, @Descuento, @SubTotal, @Total);");
-                sqlFactura.Append("SELECT LAST_INSERT_ID();");
+                sqlFactura.Append("INSERT INTO factura (Fecha, IdentidadCliente, CodigoUsuario, ISV, Descuento, SubTotal, Total) VALUES (@Fecha, @IdentidadCliente, @CodigoUsuario, @ISV, @Descuento, @SubTotal, @Total); ");
+                sqlFactura.Append("SELECT LAST_INSERT_ID(); ");
 
 
                 StringBuilder sqlDetalle = new StringBuilder();
 
-                sqlDetalle.Append("INSERT INTO detallefactura VALUES(@IdFactura, @CodigoProducto, @Precio, @Cantidad, @Total,);");
+                sqlDetalle.Append("INSERT INTO detallefactura (IdFactura, CodigoProducto, Precio, Cantidad, Total) VALUES (@IdFactura, @CodigoProducto, @Precio, @Cantidad, @Total); ");
 
 
                 StringBuilder sqlExistencia = new StringBuilder();
 
-                sqlExistencia.Append("UPDATE producto SET Existencia = Existencia - @Cantidad WHERE Codigo = @Codigo;");
+                sqlExistencia.Append("UPDATE producto SET Existencia = Existencia - @Cantidad WHERE Codigo = @Codigo; ");
 
 
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
@@ -45,7 +46,7 @@ namespace Datos
                         {
                             _comando1.CommandType = System.Data.CommandType.Text;
                             _comando1.Parameters.Add("@Fecha", MySqlDbType.DateTime).Value = factura.Fecha;
-                            _comando1.Parameters.Add("@Cliente", MySqlDbType.VarChar, 25).Value = factura.IdentidadCliente;
+                            _comando1.Parameters.Add("@IdentidadCliente", MySqlDbType.VarChar, 25).Value = factura.IdentidadCliente;
                             _comando1.Parameters.Add("@CodigoUsuario", MySqlDbType.VarChar, 50).Value = factura.CodigoUsuario;
                             _comando1.Parameters.Add("@ISV", MySqlDbType.Decimal).Value = factura.ISV;
                             _comando1.Parameters.Add("@Descuento", MySqlDbType.Decimal).Value = factura.Descuento;
@@ -60,19 +61,18 @@ namespace Datos
                             using (MySqlCommand _comando2 = new MySqlCommand(sqlDetalle.ToString(), _conexion, transaccion))
                             {
                                 _comando2.CommandType = System.Data.CommandType.Text;
-                                _comando2.Parameters.Add("@IdFactura", MySqlDbType.Int32).Value = detalle.IdFactura;
+                                _comando2.Parameters.Add("@IdFactura", MySqlDbType.Int32).Value = idFactura;
                                 _comando2.Parameters.Add("@CodigoProducto", MySqlDbType.VarChar, 80).Value = detalle.CodigoProducto;
                                 _comando2.Parameters.Add("@Precio", MySqlDbType.Decimal).Value = detalle.Precio;
-                                _comando2.Parameters.Add("@Cantidad", MySqlDbType.Int32).Value = detalle.Cantidad;
+                                _comando2.Parameters.Add("@Cantidad", MySqlDbType.Decimal).Value = detalle.Cantidad;
                                 _comando2.Parameters.Add("@Total", MySqlDbType.Decimal).Value = detalle.Total;
                                 _comando2.ExecuteNonQuery();
-
                             }
 
                             using (MySqlCommand _comando3 = new MySqlCommand(sqlExistencia.ToString(), _conexion, transaccion))
                             {
                                 _comando3.CommandType = System.Data.CommandType.Text;
-                                _comando3.Parameters.Add("@Cantidad", MySqlDbType.Int32).Value = detalle.Cantidad;
+                                _comando3.Parameters.Add("@Cantidad", MySqlDbType.Decimal).Value = detalle.Cantidad;
                                 _comando3.Parameters.Add("@Codigo", MySqlDbType.VarChar, 80).Value = detalle.CodigoProducto;
                                 _comando3.ExecuteNonQuery();
 
@@ -100,6 +100,5 @@ namespace Datos
             return inserto;
 
         }
-
     }
 }

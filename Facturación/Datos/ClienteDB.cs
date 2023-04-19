@@ -99,7 +99,7 @@ namespace Datos
             {
                 StringBuilder sql = new StringBuilder();
 
-                sql.Append("SELECT * FROM cliente WHERE NOMBRE LIKE ('%@Nombre%'); ");
+                sql.Append("SELECT * FROM cliente WHERE NOMBRE LIKE '%" + nombre + "%'");
 
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
@@ -108,7 +108,6 @@ namespace Datos
                     using (MySqlCommand _comando = new MySqlCommand(sql.ToString(), _conexion))
                     {
                         _comando.CommandType = CommandType.Text;
-                        _comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = nombre;
                         MySqlDataReader dr = _comando.ExecuteReader();
                         dt.Load(dr);
 
@@ -147,7 +146,7 @@ namespace Datos
                         _comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = cliente.Nombre;
                         _comando.Parameters.Add("@Telefono", MySqlDbType.VarChar, 15).Value = cliente.Telefono;
                         _comando.Parameters.Add("@Correo", MySqlDbType.VarChar, 45).Value = cliente.Correo;
-                        _comando.Parameters.Add("@Direccion", MySqlDbType.VarChar, 10).Value = cliente.Direccion;
+                        _comando.Parameters.Add("@Direccion", MySqlDbType.VarChar, 100).Value = cliente.Direccion;
                         _comando.Parameters.Add("@FechaNacimiento", MySqlDbType.DateTime).Value = cliente.FechaNacimiento;
                         _comando.Parameters.Add("@EstaActivo", MySqlDbType.Bit).Value = cliente.EstaActivo;
                         _comando.ExecuteNonQuery();

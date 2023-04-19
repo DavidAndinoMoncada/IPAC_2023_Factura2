@@ -75,6 +75,7 @@
             this.Cancelarbutton.TabIndex = 3;
             this.Cancelarbutton.Text = "Cancelar";
             this.Cancelarbutton.UseVisualStyleBackColor = true;
+            this.Cancelarbutton.Click += new System.EventHandler(this.Cancelarbutton_Click);
             // 
             // ClientesdataGridView
             // 
